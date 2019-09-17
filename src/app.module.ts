@@ -18,9 +18,11 @@ export class AppModule {
   constructor(
     @Inject(ZEEBE_CONNECTION_PROVIDER) private readonly zbClient: ZBClient,
   ) {
-    this.zbClient.deployWorkflow('./bpmn/order-process.bpmn').then(
+    this.zbClient.deployWorkflow('./bpmn/order-process.bpmn').then(res => {
       // tslint:disable-next-line: no-console
-      console.log,
-    );
+      console.log(res);
+      // tslint:disable-next-line: no-console
+      console.log('\nNow open http://localhost:3000 to start a workflow.');
+    });
   }
 }
