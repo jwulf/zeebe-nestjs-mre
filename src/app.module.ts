@@ -6,11 +6,17 @@ import {
   ZeebeServer,
   ZEEBE_CONNECTION_PROVIDER,
 } from '@payk/nestjs-zeebe';
-import { AppService } from './app.service';
 import { ZBClient } from 'zeebe-node';
 
+import { AppService } from './app.service';
+
 @Module({
-  imports: [ZeebeModule.forRoot({})],
+  imports: [
+    ZeebeModule.forRoot({
+      gatewayAddress: 'localhost',
+      options: { loglevel: 'INFO', longPoll: 30000 },
+    }),
+  ],
   controllers: [AppController],
   providers: [ZeebeServer, AppService],
 })
@@ -21,6 +27,7 @@ export class AppModule {
     this.zbClient.deployWorkflow('./bpmn/order-process.bpmn').then(res => {
       // tslint:disable-next-line: no-console
       console.log(res);
+
       // tslint:disable-next-line: no-console
       console.log('\nNow open http://localhost:3000 to start a workflow.');
     });

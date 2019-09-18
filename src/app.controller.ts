@@ -3,14 +3,26 @@ import { Controller, Get, Inject } from '@nestjs/common';
 import { AppService } from './app.service';
 import { ZBClient } from 'zeebe-node';
 import { CreateWorkflowInstanceResponse } from 'zeebe-node/interfaces';
-import { ZEEBE_CONNECTION_PROVIDER, ZeebeWorker } from '@payk/nestjs-zeebe';
+import {
+  ZEEBE_CONNECTION_PROVIDER,
+  ZeebeWorker,
+  ZeebeServer,
+} from '@payk/nestjs-zeebe';
+import { tsIndexSignature } from '@babel/types';
 
 @Controller()
 export class AppController {
   constructor(
-    private readonly appService: AppService,
     @Inject(ZEEBE_CONNECTION_PROVIDER) private readonly zbClient: ZBClient,
-  ) {}
+    private readonly zeebeServer: ZeebeServer,
+    private readonly appService: AppService,
+  ) {
+    // tslint:disable-next-line: no-console
+    // this.zbClient.topology().then(console.log);
+    // tslint:disable-next-line: no-console
+    console.log(this.zeebeServer.getHandlers());
+    this.appService.getHello();
+  }
 
   // Use the client to create a new workflow instance
   @Get()
