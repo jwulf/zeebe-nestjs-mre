@@ -4,7 +4,9 @@
 
 # NestJS with Zeebe
 
-This is a fully working minimal example of the [NestJS Zeebe Connector](https://github.com/pay-k/nestjs-zeebe).
+_MRE: Minimal Reproducible Example, or "Meal Ready to Eat"._
+
+This is a fully working minimal example of the [NestJS Zeebe Connector](https://github.com/pay-k/nestjs-zeebe). Props to Dan Shapir for writing it!
 
 ## Description
 

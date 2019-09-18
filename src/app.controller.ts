@@ -16,13 +16,7 @@ export class AppController {
     @Inject(ZEEBE_CONNECTION_PROVIDER) private readonly zbClient: ZBClient,
     private readonly zeebeServer: ZeebeServer,
     private readonly appService: AppService,
-  ) {
-    // tslint:disable-next-line: no-console
-    // this.zbClient.topology().then(console.log);
-    // tslint:disable-next-line: no-console
-    console.log(this.zeebeServer.getHandlers());
-    this.appService.getHello();
-  }
+  ) {}
 
   // Use the client to create a new workflow instance
   @Get()
